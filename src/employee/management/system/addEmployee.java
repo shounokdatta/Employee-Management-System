@@ -1,20 +1,18 @@
 package employee.management.system;
 
 import com.toedter.calendar.JDateChooser;
-
+import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class addEmployee extends JFrame implements ActionListener {
-
-        JTextField tName,tfname,taddress,tphone,taadhar,temail,tsalary,tdesignation;
+  JTextField tName,tfname,taddress,tphone,taadhar,temail,tsalary,tdesignation;
         JDateChooser tDOB;
         JButton add,back;
         JComboBox Boxeducation;
-        int EMP_ID=1;
-
+//        int EMP_ID=1;
 
 
     addEmployee() {
@@ -161,8 +159,12 @@ public class addEmployee extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == add){
 
+
+        if(e.getSource() == add){
+            Random random = new Random(); // ✅ declare and initialize
+            int Number = random.nextInt(9999);
+            System.out.println(Number); // ✅ Correct
             String name= tName.getText();
             String Fname= tfname.getText();
             String DOB= ((JTextField) tDOB.getDateEditor().getUiComponent()).getText();
@@ -178,11 +180,11 @@ public class addEmployee extends JFrame implements ActionListener {
              try{
                  conn c=new conn();
                  String query = "INSERT INTO Employee (EMP_ID, name, Fname, DOB, salary, address, phoneno, email, designation, addharNo, education) " +
-                         "VALUES ('" + 101+ "','" + name + "','" + Fname + "','" + DOB + "','" + salary + "','" + address + "','" + phoneno + "','" + email + "','" + designation + "','" + addr + "','" + education + "')";
+                         "VALUES ('" + Number+ "','" + name + "','" + Fname + "','" + DOB + "','" + salary + "','" + address + "','" + phoneno + "','" + email + "','" + designation + "','" + addr + "','" + education + "')";
 
                  c.statement.executeUpdate(query);
                  JOptionPane.showMessageDialog(null,"Employee Added Successfully");
-                 setVisible(false);
+//                 setVisible(false);
 
 
              }catch(Exception ex){
@@ -203,6 +205,7 @@ public class addEmployee extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
             new addEmployee();
-        }
+
+    }
     }
 

@@ -117,7 +117,7 @@ public class update extends JFrame implements ActionListener {
         empid.setFont(new Font("SAN_SERIF", Font.BOLD,20));
         add(empid);
 
-        tempid= new JLabel();
+        tempid= new JLabel(" "+this.number);
         tempid.setBounds(200,400,150,30);
         tempid.setFont(new Font("SAN_SARIF", Font.BOLD,20));
         tempid.setForeground(Color.RED);
@@ -135,19 +135,19 @@ public class update extends JFrame implements ActionListener {
 
         try {
             conn c = new conn();
-            String query = "select * from employee where empId = '"+number+"'";
+            String query = "select * from employee where EMP_ID = '"+number+"'";
             ResultSet resultSet = c.statement.executeQuery(query);
             while (resultSet.next()){
                 tname.setText(resultSet.getString("name"));
-                tfname.setText(resultSet.getString("fname"));
-                tdob.setText(resultSet.getString("dob"));
+                tfname.setText(resultSet.getString("Fname"));
+                tdob.setText(resultSet.getString("DOB"));
                 taddress.setText(resultSet.getString("address"));
                 tsalary.setText(resultSet.getString("salary"));
-                tphone.setText(resultSet.getString("phone"));
+                tphone.setText(resultSet.getString("phoneno"));
                 temail.setText(resultSet.getString("email"));
                 teducation.setText(resultSet.getString("education"));
-                tadhar.setText(resultSet.getString("addhar"));
-                tempid.setText(resultSet.getString("empId"));
+                tadhar.setText(resultSet.getString("addharNo"));
+                tempid.setText(resultSet.getString("EMP_ID"));
                 tdesignation.setText(resultSet.getString("designation"));
             }
         }catch (Exception e){
@@ -180,21 +180,35 @@ public class update extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == add){
+            String name = tfname.getText();
             String fname = tfname.getText();
             String salary = tsalary.getText();
             String address = taddress.getText();
             String phone = tphone.getText();
             String email = temail.getText();
             String education = teducation.getText();
+            String addhar = tadhar.getText();
             String designation = tdesignation.getText();
 
             try {
                 conn c = new conn();
-                String query = "update employee set fname = '"+fname+"', salary = '"+salary+"', address = '"+address+"', phone = '"+phone+"', email = '"+email+"', education = '"+education+"', designation = '"+designation+"' where empId = '1'";
+                String query = "UPDATE employee SET "
+                        + "name = '" + name + "', "
+                        + "Fname = '" + fname + "', "
+                        + "salary = '" + salary + "', "
+                        + "address = '" + address + "', "
+                        + "phoneno = '" + phone + "', "
+                        + "email = '" + email + "', "
+                        + "designation = '" + designation + "', "
+                        + "education = '" + education + "', "
+                        + "addharNo = '" + addhar + "' "
+                        + "WHERE EMP_ID = '" + this.number + "'";
+
                 c.statement.executeUpdate(query);
+
                 JOptionPane.showMessageDialog(null, "Details updated successfully");
                 setVisible(false);
-                new main_class();
+                new view();
             }catch (Exception E){
                 E.printStackTrace();
             }

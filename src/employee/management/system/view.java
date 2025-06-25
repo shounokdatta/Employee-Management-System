@@ -95,7 +95,8 @@ public class view extends JFrame implements ActionListener {
             }
         }
         else if(e.getSource()==update){
-
+                setVisible(false);
+                new update(choiceEMP.getSelectedItem());
 
         }
         else{

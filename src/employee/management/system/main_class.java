@@ -55,9 +55,11 @@ public class main_class extends JFrame {
             rem.setBounds(400,370,250,40);
             rem.setForeground(Color.white);
             rem.setBackground(Color.black);
-            add.addActionListener(new ActionListener() {
+            rem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    setVisible(false);
+                    new removeEmployee();
 
                 }
             });
