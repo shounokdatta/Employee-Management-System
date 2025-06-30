@@ -12,7 +12,6 @@ public class addEmployee extends JFrame implements ActionListener {
         JDateChooser tDOB;
         JButton add,back;
         JComboBox Boxeducation;
-//        int EMP_ID=1;
 
 
     addEmployee() {

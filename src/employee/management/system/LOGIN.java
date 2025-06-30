@@ -80,7 +80,8 @@ public class LOGIN extends JFrame implements ActionListener {
                 ResultSet resultSet=conn.statement.executeQuery(query);
                 if(resultSet.next()){
                     setVisible(false);
-                    new main_class();
+                    new adminVarification();
+//                    new main_class();
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"Invalid Username or Password");
